@@ -67,7 +67,12 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path='/' element={<Home />} />
+                <Route path='/' element={
+                    <Home
+                        availableTags={tags}
+                        notes={noteWithTags}
+                    />
+                } />
                 <Route path='/new-note' element={
                     <NewNote
                         onSubmit={onCreateNote}
