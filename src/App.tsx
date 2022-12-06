@@ -4,6 +4,8 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import Home from './pages/Home';
 import NewNote from './pages/NewNote';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import { NoteLayout } from './Components/NoteLayout';
+import { NoteDetails } from './Components/NoteDetails';
 
 export type Note = {
     id: string
@@ -80,8 +82,8 @@ function App() {
                         availableTags={tags}
                     />
                 } />
-                <Route path='/:id'>
-                    <Route index element={<h1>New Show</h1>} />
+                <Route path='/:id' element={<NoteLayout notes={noteWithTags} />}>
+                    <Route index element={<NoteDetails />} />
                     <Route path="edit" element={<h1>Edit Show</h1>} />
                 </Route>
                 <Route path='*' element={<Navigate to="/" />} />
