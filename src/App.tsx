@@ -6,6 +6,7 @@ import NewNote from './pages/NewNote';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { NoteLayout } from './Components/NoteLayout';
 import { NoteDetails } from './Components/NoteDetails';
+import EditNote from './pages/EditNote';
 
 export type Note = {
     id: string
@@ -62,6 +63,22 @@ function App() {
         navigate('/');
     }
 
+    const onUpdateNote = (id: string, { tags, ...data }: NoteData) => {
+        setNotes(prevData => {
+            return prevData.map(note => {
+                if (note.id == id) {
+                    return {
+                        ...note,
+                        ...data,
+                        tagIds: tags.map(tag => tag.id)
+                    }
+                } else {
+                    return note;
+                }
+            });
+        });
+    }
+
     const onAddTag = (newTag: Tag) => {
         setTags(prevTags => [...prevTags, newTag])
     }
@@ -84,7 +101,13 @@ function App() {
                 } />
                 <Route path='/:id' element={<NoteLayout notes={noteWithTags} />}>
                     <Route index element={<NoteDetails />} />
-                    <Route path="edit" element={<h1>Edit Show</h1>} />
+                    <Route path="edit-note" element={
+                        <EditNote
+                            onSubmit={onUpdateNote}
+                            onAddTag={onAddTag}
+                            availableTags={tags}
+                        />
+                    } />
                 </Route>
                 <Route path='*' element={<Navigate to="/" />} />
             </Routes>
