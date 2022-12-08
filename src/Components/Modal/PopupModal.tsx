@@ -10,7 +10,7 @@ export default function PopupModal({ popupModal, setPopupModal, children }: Popu
 
     return (
         <>
-            <main className={`absolute top-0 w-full overflow-x-hidden font-sans antialiased text-gray-900 ${popupModal === "deleteModal" ? "" : "hidden"}`}
+            <main className={`absolute top-0 w-full overflow-x-hidden font-sans antialiased text-gray-900 ${popupModal ? "" : "hidden"}`}
                 onClick={() => setPopupModal("")}
             >
                 <div className="relative min-h-screen px-4 md:flex md:items-center md:justify-center">
