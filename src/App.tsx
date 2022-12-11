@@ -8,6 +8,7 @@ import { NoteLayout } from './Components/NoteLayout';
 import { NoteDetails } from './Components/NoteDetails';
 import EditNote from './pages/EditNote';
 import Header from './Components/Header/Header';
+import PopupModal from './Components/Modal/PopupModal';
 
 export type Note = {
     id: string
@@ -38,6 +39,7 @@ function App() {
 
     const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
     const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
+    const [popupModal, setPopupModal] = useState('');
 
     const navigate = useNavigate();
 
@@ -93,7 +95,9 @@ function App() {
 
     return (
         <>
-            <Header />
+            <Header
+                setPopupModal={setPopupModal}
+            />
             <Routes>
                 <Route path='/' element={
                     <Home
@@ -120,6 +124,23 @@ function App() {
                 </Route>
                 <Route path='*' element={<Navigate to="/" />} />
             </Routes>
+
+            {/* Manage Tags Modal */}
+            <PopupModal
+                popupModal={popupModal}
+                setPopupModal={setPopupModal}
+            >
+                <div>
+                    {
+                        tags.map(tag => (
+                            <div key={tag.id} className="flex justify-between">
+                                <input defaultValue={tag.label} className="w-full px-4 py-1 my-2 mr-12 text-gray-700 border-2 rounded-md outline-none text-md" />
+                                <button className="px-2 my-2 text-lg text-white bg-red-500 border-0 rounded focus:outline-none hover:bg-red-600">X</button>
+                            </div>
+                        ))
+                    }
+                </div>
+            </PopupModal>
         </>
     );
 }

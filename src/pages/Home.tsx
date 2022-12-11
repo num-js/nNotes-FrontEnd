@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import { NoteCard } from '../Components/NoteCard'
 import { Note, Tag } from '../App';
-import PopupModal from '../Components/Modal/PopupModal';
 
 type HomeProps = {
     availableTags: Tag[]
@@ -15,7 +14,6 @@ const Home = ({ availableTags, notes }: HomeProps) => {
     const [title, setTitle] = useState('');
     const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
-    const [popupModal, setPopupModal] = useState('true');
 
 
     const filteredNotes = useMemo(() => {
@@ -45,7 +43,6 @@ const Home = ({ availableTags, notes }: HomeProps) => {
                                     <button type="submit" className="px-8 py-2 mr-4 text-lg text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600">Add Note</button>
                                 </Link>
                                 <button className="px-8 py-2 text-lg text-white bg-gray-500 border-0 rounded focus:outline-none hover:bg-gray-600"
-                                    onClick={() => setPopupModal("tagsModal")}
                                 >Edit Tags</button>
                             </div>
                         </div>
@@ -109,22 +106,6 @@ const Home = ({ availableTags, notes }: HomeProps) => {
                     </div>
                 </div>
             </section>
-
-            <PopupModal
-                popupModal={popupModal}
-                setPopupModal={setPopupModal}
-            >
-                <div>
-                    {
-                        availableTags.map(tag => (
-                            <div key={tag.id} className="flex justify-between">
-                                <input defaultValue={tag.label} className="w-full px-4 py-1 my-2 mr-12 text-gray-700 border-2 rounded-md outline-none text-md" />
-                                <button className="px-2 my-2 text-lg text-white bg-red-500 border-0 rounded focus:outline-none hover:bg-red-600">X</button>
-                            </div>
-                        ))
-                    }
-                </div>
-            </PopupModal>
         </>
     )
 }
