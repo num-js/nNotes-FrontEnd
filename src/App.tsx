@@ -93,6 +93,23 @@ function App() {
         setTags(prevTags => [...prevTags, newTag])
     }
 
+    const onUpdateTag = (id: string, label: string) => {
+        setTags(prevTags => {
+            return prevTags.map(tag => {
+                if (tag.id === id) {
+                    return { ...tag, label };
+                }
+                return tag;
+            })
+        })
+    }
+
+    const onDeleteTag = (id: string) => {
+        setTags(prevTags => {
+            return prevTags.filter(tags => tags.id !== id);
+        });
+    }
+
     return (
         <>
             <Header
@@ -131,11 +148,16 @@ function App() {
                 setPopupModal={setPopupModal}
             >
                 <div>
+                    <p className="font-bold">Edit Tags</p>
                     {
                         tags.map(tag => (
                             <div key={tag.id} className="flex justify-between">
-                                <input defaultValue={tag.label} className="w-full px-4 py-1 my-2 mr-12 text-gray-700 border-2 rounded-md outline-none text-md" />
-                                <button className="px-2 my-2 text-lg text-white bg-red-500 border-0 rounded focus:outline-none hover:bg-red-600">X</button>
+                                <input defaultValue={tag.label} className="w-full px-4 py-1 my-2 mr-12 text-gray-700 border-2 rounded-md outline-none text-md"
+                                    onChange={(event) => onUpdateTag(tag.id, event.target.value)}
+                                />
+                                <button className="px-2 my-2 text-lg text-white bg-red-500 border-0 rounded focus:outline-none hover:bg-red-600"
+                                    onClick={() => onDeleteTag(tag.id)}
+                                >X</button>
                             </div>
                         ))
                     }
