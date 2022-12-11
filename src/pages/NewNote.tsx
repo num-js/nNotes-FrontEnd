@@ -27,7 +27,7 @@ export default function NewNote({ onSubmit, onAddTag, availableTags }: NoteFormP
     return (
         <>
             <section className="relative text-gray-600 body-font">
-                <div className="container px-5 py-24 mx-auto">
+                <div className="container px-5 py-16 mx-auto">
 
 
                     <div className="flex flex-col">

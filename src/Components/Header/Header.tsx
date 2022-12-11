@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
-export default function Header() {
+type HeaderProps = {
+    setPopupModal: (modalId: string) => void
+}
+
+export default function Header({ setPopupModal }: HeaderProps) {
     return (
         <>
             <header className="p-4 pb-0 bg-gray-100 border-b shadow-lg md:flex md:items-center md:justify-between md:pb-4">
@@ -53,7 +57,9 @@ export default function Header() {
                             </Link>
                         </li>
                         <li className="md:ml-4">
-                            <a href="#" className="block py-2 no-underline border-t text-grey-darkest hover:underline hover:text-black md:p-0 md:border-none">Manage Tags</a>
+                            <a href="#" className="block py-2 no-underline border-t text-grey-darkest hover:underline hover:text-black md:p-0 md:border-none"
+                                onClick={() => setPopupModal("tagsModal")}
+                            >Manage Tags</a>
                         </li>
                     </ul>
                 </nav>

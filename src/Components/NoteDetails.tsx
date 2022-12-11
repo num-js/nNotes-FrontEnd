@@ -16,7 +16,7 @@ export function NoteDetails({ onDeleteNote }: NoteDetailsProps) {
     return (
         <>
             <section className="relative text-gray-600 body-font">
-                <div className="container px-5 py-24 mx-auto">
+                <div className="container px-5 py-16 mx-auto">
 
                     <div className="flex justify-between">
                         <h1 className="mb-2 text-2xl font-medium text-gray-900 title-font sm:mb-0">{note.title}</h1>
