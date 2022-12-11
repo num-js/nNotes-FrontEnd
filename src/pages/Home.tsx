@@ -14,8 +14,6 @@ const Home = ({ availableTags, notes }: HomeProps) => {
     const [title, setTitle] = useState('');
     const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
-
-
     const filteredNotes = useMemo(() => {
         return notes.filter(note => {
             return (
