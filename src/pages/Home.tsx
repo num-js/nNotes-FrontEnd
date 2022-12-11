@@ -91,9 +91,15 @@ const Home = ({ availableTags, notes }: HomeProps) => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col w-full mt-10 mb-4 text-center">
-                        <h2 className="font-medium text-gray-900 text-l sm:text-2xl title-font">All Notes</h2>
+                    <div className="flex flex-col pt-4 my-8">
+                        <div className="flex justify-between">
+                            <h1 className="mb-2 text-2xl font-medium text-gray-900 title-font sm:mb-0">All Notes</h1>
+                        </div>
+                        <div className="h-1 overflow-hidden bg-gray-200 rounded">
+                            <div className="w-40 h-full bg-indigo-500"></div>
+                        </div>
                     </div>
+
                     <div className="flex flex-wrap -m-4">
                         {
                             filteredNotes.map(note => (

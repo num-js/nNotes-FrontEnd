@@ -7,6 +7,7 @@ import { useLocalStorage } from './hooks/useLocalStorage';
 import { NoteLayout } from './Components/NoteLayout';
 import { NoteDetails } from './Components/NoteDetails';
 import EditNote from './pages/EditNote';
+import Header from './Components/Header/Header';
 
 export type Note = {
     id: string
@@ -92,6 +93,7 @@ function App() {
 
     return (
         <>
+            <Header />
             <Routes>
                 <Route path='/' element={
                     <Home
